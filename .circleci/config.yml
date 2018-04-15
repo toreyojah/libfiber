@@ -1,0 +1,55 @@
+version: 2
+jobs:
+  build-intel:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make arch="--intel" all
+  build-mips:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make arch="--mips" all
+  build-powerpc:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make flavour="--powerpc" all
+  build-arm:
+    docker:
+      - image: ubuntu:trusty
+    steps:
+      - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get -y install build-essential
+      - run: sudo apt-get -y install libelf-dev
+      - run: sudo apt-get -y install wget
+      - run: sudo apt-get -y install unzip
+      - run: make flavour="--arm" all
+workflows:
+  version: 2
+  libfiber_builds:
+    jobs:
+      - build-intel
+      - build-mips
+      - build-powerpc
+      - build-arm
+
