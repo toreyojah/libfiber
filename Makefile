@@ -1,6 +1,6 @@
 
 all:
-	$(Q)./src/test.sh 1200 "libfiber_log"
+	@./src/test.sh 1200 "libfiber_log"
 .PHONY : all
 
 VPATH += example src test submodules/libev
